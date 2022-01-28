@@ -1,12 +1,10 @@
 .column {
     float: left;
-    width: 25%;
     text-align: center;
+    width: 20%;
   }
   
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
+.row:after {
     display: table;
     clear: both;
   }
