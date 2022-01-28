@@ -1,14 +1,25 @@
 .block {
-  border-left: 10px solid #355E3B;
+  border-left: 10px solid #235937;
+}
+
+.header{
+  background: linear-gradient(#235937,#FFCC33)
 }
 
 .column {
   float: left;
   text-align: center;
-  width: 16%;
+  width: 25%;
 }
 
 .row:after {
   display: table;
   clear: both;
 }
+
+h1 { font-size: 45px;
+      font-family: "Saturday Sans Bold", sans-serif;}
+
+h2 { font-size: 30px;
+      font-family: "Saturday Sans Bold", sans-serif;}
+     
