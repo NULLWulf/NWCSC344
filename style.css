@@ -1,5 +1,6 @@
 .block {
   border-left: 10px solid #235937;
+  padding-left: 5px;
 }
 
 .header{
@@ -18,10 +19,12 @@
   clear: both;
 }
 
-h1 { font-size: 45px;
-      font-family: "Saturday Sans Bold", sans-serif;
-      padding-left: 10px;}
+h1 { 
+  font-size: 45px;
+  font-family: "Saturday Sans Bold", sans-serif;
+  padding-left: 10px;}
 
-h2 { font-size: 30px;
-      font-family: "Saturday Sans Bold", sans-serif;}
+h2 { 
+  font-size: 30px;
+  font-family: "Saturday Sans Bold", sans-serif;}
      
