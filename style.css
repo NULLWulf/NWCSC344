@@ -8,17 +8,6 @@
   padding: 20px;
 }
 
-.column {
-  float: left;
-  text-align: center;
-  width: 25%;
-}
-
-.row:after {
-  display: table;
-  clear: both;
-}
-
 .identedLink{
   padding-left: 25px;
 }
