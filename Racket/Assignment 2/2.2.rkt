@@ -1,1 +1,39 @@
 #lang racket
+
+(define (roll-die) (random 1 6))
+
+
+(define (roll-for-1)
+  ( define outcome ( roll-die ) )
+  ( cond
+     ( ( = outcome 1) (display outcome) ( display " " ) )
+     ( (display outcome) (display " ") (roll-for-1))
+     )
+  )
+
+(define (roll-for-11)
+  ( roll-for-1 )
+  ( define outcome ( roll-die ) )
+  ( display outcome ) ( display " " )
+  ( cond
+     ( ( not ( eq? outcome 1 ) ) ( roll-for-11 ) )
+     )
+  )
+
+(define (roll-for-odd)
+  ( define outcome ( roll-die ) )
+  ( cond
+     ( ( odd? outcome) (display outcome) ( display " " ) )
+     ( (display outcome) (display " ") (roll-for-odd))
+     )
+  )
+
+(define (roll-for-even)
+  ( define outcome ( roll-die ) )
+  ( cond
+     ( ( even? outcome) (display outcome) ( display " " ) )
+     ( (display outcome) (display " ") (roll-for-even))
+     )
+  )
+
+
