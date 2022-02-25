@@ -1,0 +1,22 @@
+#lang racket
+
+( require 2htdp/image )
+
+( define ( random-color ) ( color ( rgb-value ) ( rgb-value ) ( rgb-value ) ))
+( define ( rgb-value ) ( random 256 ) )
+
+( define ( framed-shape side-length color )
+   ( overlay
+     ( shape side-length "outline" "black" )
+     ( shape side-length "Solid" color )))
+
+( define ( nested-shapes-one side count color )
+   ( define unit ( / side count ) )
+   ( paint-nested-shapes-one 1 count unit color ))
+
+( define ( paint-nested-shapes-one from to unit color )
+   ( define side-length ( from unit ) )
+   ( cond
+      [( = from to ) ( framed-shape side-length color)]
+      [( < from to ) ( overlay (framed-shape side-length color)
+                               ( paint-nested-shapes-one ( + from 1 ) to unit color))]))
