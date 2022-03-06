@@ -1,5 +1,7 @@
 #lang racket
 
+( require racket/trace )
+
 ( define ( ranks rank )
    ( list
      ( list rank 'C )
@@ -62,3 +64,76 @@
      ( equal? ( rank card2 ) 'A )
      )
    )
+
+( define ( pick-two-cards )
+   ( list ( pick-a-card ) ( pick-a-card ) ) )
+
+( define ( rank-indexer card )
+   ( define card-rank ( car card ))
+   ( cond
+      [(number? card-rank) card-rank]
+      [else (face-card-indexer card-rank)]))
+
+( define ( face-card-indexer card-rank )
+   ( cond
+      [(eq? 'X card-rank)10]
+      [(eq? 'J card-rank)11]
+      [(eq? 'Q card-rank)12]
+      [(eq? 'K card-rank)13]
+      [(eq? 'A card-rank)14]
+      [else 0]))
+
+( define ( higher-rank card1 card2 )
+   ( define card1-rank ( rank-indexer card1 ) )
+   ( define card2-rank ( rank-indexer card2 ) )
+   ( cond
+      [(< card1-rank card2-rank)display (car card2)]
+      [(> card1-rank card2-rank)display (car card1)] ))
+      
+
+;( trace higher-rank )
+
+( define ( classify-two-cards-ur card-pair )
+   ( define card1 ( car card-pair ) )
+   ( define card2 ( cadr card-pair ) )
+   ( define card1-rank ( rank-indexer card1))
+   ( define card2-rank ( rank-indexer card2))
+   ( define card1-suit ( suit card1))
+   ( define card2-suit ( suit card2))
+   ( define high-card ( higher-rank card1 card2))
+   ( display card-pair)
+   (display ": ")
+   ( cond
+      ((equal? card1-suit card2-suit)
+       (cond
+         ((or
+           (= 1 ( - card1-rank card2-rank))
+           (= 1 ( - card2-rank card1-rank)))
+          (display high-card) (display " high straight flush" )))
+          (else
+           (display high-card) (display " high flush "))))
+      (else
+       (cond
+         ((or
+           (= 1 ( - card1-rank card2-rank))
+           (= 1 ( - card2-rank card1-rank))
+          (display high-card) (display " high straight" )))
+         (else
+          (cond
+            ((equal? (car card1) (car card2))
+           (display "Pair of " ) (display (car card1))(display "'s"))
+          (else
+           (display high-card) (display " high" )))))))
+           
+          
+                    
+ 
+         
+         
+     
+         
+   
+      
+
+
+   
