@@ -1,0 +1,20 @@
+#lang racket
+
+( define ( equal a b )
+   (cond
+     ((equal? a b) #t)
+     (else #f)
+     )
+   )
+
+( define 1a '( a . b ) )
+( define 1b '( a b ) )
+
+( define 2a '( a . ( b c ) ) )
+( define 2b '( a b c ) )
+
+( define 3a '( a b () ) )
+( define 3b '( a . ( b . () ) ) )
+
+( define 4a '( a . ( () . ( b. () ) ) ) )
+( define 4b '( a () (b) ) )
