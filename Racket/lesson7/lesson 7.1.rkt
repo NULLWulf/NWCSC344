@@ -13,16 +13,29 @@
 
 ( trace rac )
 
-
-
-
-
-
 ;;;;;;;;;;;;;: RDC
 
 ( define ( rdc l )
    ( cond
       ( ( empty? ( cdr l ) ) '() )
-      ( else ( cons ( car 1 ) ( rdc ( cdr 1 ) ) ) )
+      ( else ( cons ( car l ) ( rdc ( cdr l ) ) ) )
       )
    )
+
+( trace rdc )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+( define ( palindrome? l )
+( cond
+( ( empty? l ) #t )
+( ( empty? ( cdr l ) ) #t )
+( ( equal? ( car l ) ( rac l ) )
+( palindrome? ( cdr ( rdc l ) ) )
+)
+( else
+#f
+)
+)
+)
+
+( trace palindrome?)
