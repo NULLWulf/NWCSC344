@@ -11,7 +11,7 @@
       )
    )
 
-( trace rac )
+;( trace rac )
 
 ;;;;;;;;;;;;;: RDC
 
@@ -22,7 +22,7 @@
       )
    )
 
-( trace rdc )
+;( trace rdc )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ( define ( palindrome? l )
@@ -39,3 +39,52 @@
 )
 
 ( trace palindrome?)
+
+
+( define ( snog obj lst )
+   ( cond
+      ( ( empty? lst )
+        ( list obj )
+        )
+      ( else
+        ( cons ( car lst ) ( snog obj ( cdr lst )  ) )
+        )
+      )
+   )
+
+;( trace snog )
+
+;;;;; Sum
+
+( define ( sum n1 )
+   ( cond
+      ( ( empty? n1 ) 0 )
+      ( else
+        ( + ( car n1 ) ( sum ( cdr n1 ) ) )
+        )))
+
+( trace sum )
+
+( define ( iota n )
+     ( cond
+        ( ( = n 1 ) '( 1 ) )
+        ( else
+          ( snog n ( iota ( - n 1 ) )) )))
+
+;( trace iota )
+
+( define ( take-from o l )
+   ( cond
+      ( ( empty? l )
+        '()
+        )
+        ( ( equal? ( car l ) o )
+          ( take-from o ( cdr l ) )
+        )
+      ( else
+        ( cons ( car l ) ( take-from o ( cdr l ) ) )
+        )
+      ))
+   
+
+( trace take-from)
