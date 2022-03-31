@@ -13,6 +13,20 @@
 
 </header>
 <body>
+	<div>
+		<pre id="show-json-from-git"></pre>
+
+<script>	
+var url = 'https://raw.githubusercontent.com/NULLWulf/AppScripts-OzFCS/main/SimplexConsolidatingV1v1.js';
+fetch(url)
+.then(res => res.text())
+.then((out) => {
+  document.getElementById("show-json-from-git").innerText = out
+})
+.catch(err => { throw err });
+</script>
+
+	</div>
   <div class="block">
     <h2>About this page</h2>
     <p>This page represents my work completed on programming assigments, code, and demos during my CSC 344 Programming Languages course at SUNY Oswego.<br>  Some of the work represents written assigments
@@ -103,8 +117,5 @@
 	</div>
 
 </div>
-  
-
-
 </body>
 </html>

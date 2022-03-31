@@ -6,4 +6,3 @@
 (identity (cons "see" "saw")) ; #t
 (identity (cons 'this 'that)) ; #t
 (identity (cons + -)) ; #t
-
