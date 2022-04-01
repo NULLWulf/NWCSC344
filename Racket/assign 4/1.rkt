@@ -2,9 +2,12 @@
 
 ( require racket/trace )
 
-( define ( count find find-list )
+( define ( count o l )
    ( cond
-      [(null? find-list) find-list]
-      [
-      
-      
+      ( ( empty? l ) 0 )
+      ( ( equal? o ( car l ) ) ( + 1 ( count o (cdr l ) ) ) )
+      ( else ( count o ( cdr l ) ) )
+      )
+   )
+
+;( trace count )
