@@ -44,4 +44,3 @@
     (else
      (add-blanks (string-append s " ") (- n 1)))))
 
-( trace add-blanks )
