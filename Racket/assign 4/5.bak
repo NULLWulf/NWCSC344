@@ -1,0 +1,34 @@
+#lang racket
+( define ( ft the-list )
+   ( define the-set ( list->set the-list ) )
+   ( define the-counts
+      ( map ( lambda (x) ( count x the-list ) ) the-set )
+      )
+   ( define association-list ( a-list the-set the-counts ) )
+   ( sort association-list < #:key car )
+   )
+( define ( ft-visualizer ft )
+   ( map pair-visualizer ft )
+   ( display "" )
+   )
+( define ( pair-visualizer pair )
+   ( define label
+      ( string-append ( number->string ( car pair ) ) ":" )
+      )
+   ( define fixed-size-label ( add-blanks label ( - 5 ( string-length label ) ) ) )
+   ( display fixed-size-label )
+   ( display
+     ( foldr
+       string-append
+       ""
+       ( make-list ( cdr pair ) "*" )
+       )
+     )
+   ( display "\n" )
+   )
+( define ( add-blanks s n )
+   ( cond
+      ((=n0)s)
+      ( else ( add-blanks ( string-append s " " ) ( - n 1 ) ) )
+      )
+   )

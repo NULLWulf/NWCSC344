@@ -1,0 +1,12 @@
+#lang racket
+
+( define ( roll-die ) ( + ( random 6 ) 1 ) )
+( define ( dot )
+   ( circle ( + 10 ( random 41 ) ) "solid" ( random-color ) )
+   )
+( define ( random-color )
+   ( color ( random 256 ) ( random 256 ) ( random 256 ) )
+   )
+( define ( sort-dots loc )
+   ( sort loc #:key image-width < )
+   )
