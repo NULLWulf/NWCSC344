@@ -1,3 +1,5 @@
 {
-    "prolog.executablePath": "C:\\Program Files\\swipl\\bins\\swipl"
+    "prolog.executablePath": "C:\\Program Files\\swipl\\bins\\swipl.exe",
+    "prolog.terminal.runtimeArgs": [
+    ]
 }
