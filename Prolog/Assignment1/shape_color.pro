@@ -62,10 +62,3 @@ coloring(O,M1,M2,M3,M4,N1,N2,N3,N4,N5,N6,N7,N8,I1,I2,I3,I4) :-
     different(I4,I2),
     different(I1,I4),
     different(I2,I3).
-
-
-
-
-
-
-
