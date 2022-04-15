@@ -67,4 +67,34 @@ pokemon(name(blastoise), water, hp(140), attack(hydro-pump, 60)).
 pokemon(name(staryu), water, hp(40), attack(slap, 20)).
 pokemon(name(starmie), water, hp(60), attack(star-freeze, 20)).
 
+display_names :- pokemon(name(Name),_,_,_),write(Name),nl,fail.
 
+disply_attacks :- pokemon(_,_,_,attack(Attack,_)),write(Attack),nl,fail.
+
+powerful(Name) :- pokemon(name(Name),_,_,attack(_,DMG)), DMG > 55.
+
+tough(Name) :- pokemon(name(Name),_,hp(HP),_), HP > 100.
+
+type(Name,T) :- pokemon(name(Name),T,_,_).
+
+dump_kind(T) :- pokemon(name(Name), T, hp(HP), attack(Attack,DMG)),
+    write('pokemon(name('), write(Name), write('), '), write(T),
+    write(', hp('),write(HP),write('), attack('), write(Attack),
+    write(', '), write(DMG), write(')).'),nl,fail.
+
+display_cen :- cen(Pokemon),write(Pokemon),nl,fail.
+
+family(P) :- evolves(P,Q), evolve(Q,R), write(P), write(' '), write(Q),
+    write(' '), write(R).
+
+families :- cen(P), family(P), nl, fail.
+
+lineage(P) :- evolves(P,Q), evolves(Q,R), display_info(P), nl,
+    display_info(Q), nl, display_info(R).
+lineage(P) :- evolves(P,Q), display_info(P), nl, display_info(Q).
+lineage(P) :- display_info(P).
+
+display_info(P) :- pokemon(name(P), T, hp(HP), attack(A, DMG)),
+    write('pokemon(name('), write(P), write('), '),
+    write(T), write(', hp('), write(HP), write('), attack('), write(A),
+    write(', '), write(DMG), write(')), ').

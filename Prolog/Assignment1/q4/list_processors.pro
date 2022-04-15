@@ -59,3 +59,45 @@ make_set([H|T],TS) :-
 make_set([H|T],[H|TS]) :-
     make_set(T,TS).
 
+%% Make List %%
+make_list(0,_,_).
+make_list(N,E,L) :- K - 1,
+    make_list(K,E,NL),
+    add_last(E,NL,L).
+
+%% But first %% 
+but_first(L,NL) :- rest(L,NL).
+
+%% But Last %%
+but_last([],[]).
+but_last([_|[]],[]).
+but_last([H|T],L) :-
+    but_last(T,NL),
+    add_first(H,NL,L).
+
+%% Is palindrome %%
+is_palindrome([]).
+is_palindrome([_|[]],[]).
+is_palindrome(L) :- first(L,First), last(L,Last),
+    First = Last, but_first(L,NL),
+    but_last(NL,NNL), is_palindrome(NNL).
+
+%% noun_phrase %%
+noun_phrase(NP) :-
+    pick([yummy,funny,beautiful,talented,based,ridiculiouus],Adj),
+    pick([player,ganster,gamer,writer,programmer,artist,dogwalker,babysitter],Noun),
+    add_last(Adj, [the], L),
+    add_last(Noun,L,NP).
+
+%% sentence phrase %%
+sentence(S) :-
+    pick([fought,adminsatred,dressed,challenged,proctored,cut,ran],V),
+    noun_phrase(NP),
+    add_last(V,NP,NPV),
+    noun_phrase(NP1),
+    nth(0,NP1,E1),
+    nth(1,NP1,E2),
+    nth(2,NP1,E3),
+    add_last(E1,NPV,NPV1),
+    add_last(E2,NPV1,NPV2),
+    add_last(E3,NPV2,S).
