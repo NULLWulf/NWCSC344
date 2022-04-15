@@ -19,9 +19,16 @@ writelist([H|T]) :-
     write(H), nl, writelist(T).
 
 %% Sum %%%
+sum([],0).
 sum([Head|Tail],Sum) :-
     sum(Tail,SumOfTail),
     Sum is Head + SumOfTail.
+
+%% Product %%%
+product([],1).
+product([Head|Tail],Product) :-
+    product(Tail,ProductOfTail),
+    Product is Head * ProductOfTail.
 
 %% Addfirst %%%
 add_first(X,L,[X|L]).
@@ -51,3 +58,4 @@ make_set([H|T],TS) :-
     make_set(T,TS).
 make_set([H|T],[H|TS]) :-
     make_set(T,TS).
+

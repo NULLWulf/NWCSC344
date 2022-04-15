@@ -10,4 +10,11 @@
       )
    )
 
+( define ( listset l )
+   ( cond
+      ( ( empty? l ) '() )
+      ( ( member ( car l ) ( cdr l ) ) ( listset ( cdr l ) ) )
+      ( else ( cons ( car l ) ( listset ( cdr l ) ) ) )
+      )
+   )
 ;( trace list->set )

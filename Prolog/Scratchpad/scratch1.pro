@@ -1,7 +1,5 @@
 good(life).
 good(doughnut).
-good(food).
 loves(mary,computers).
-
-right_for(X,joe) :-
-    loves(X,joe).
+worthwhile(X) :- good(X).
+right_for(X,joe) :- loves(X,computers).
