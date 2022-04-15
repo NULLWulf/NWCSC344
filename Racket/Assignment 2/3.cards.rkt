@@ -89,7 +89,7 @@
    ( cond
       [(< card1-rank card2-rank)display (car card2)]
       [(> card1-rank card2-rank)display (car card1)] ))
-      
+
 
 ;( trace higher-rank )
 
@@ -110,30 +110,29 @@
            (= 1 ( - card1-rank card2-rank))
            (= 1 ( - card2-rank card1-rank)))
           (display high-card) (display " high straight flush" )))
-          (else
-           (display high-card) (display " high flush "))))
+       (else
+        (display high-card) (display " high flush "))))
+   (else
+    (cond
+      ((or
+        (= 1 ( - card1-rank card2-rank))
+        (= 1 ( - card2-rank card1-rank))
+        (display high-card) (display " high straight" )))
       (else
        (cond
-         ((or
-           (= 1 ( - card1-rank card2-rank))
-           (= 1 ( - card2-rank card1-rank))
-          (display high-card) (display " high straight" )))
+         ((equal? (car card1) (car card2))
+          (display "Pair of " ) (display (car card1))(display "'s"))
          (else
-          (cond
-            ((equal? (car card1) (car card2))
-           (display "Pair of " ) (display (car card1))(display "'s"))
-          (else
-           (display high-card) (display " high" )))))))
-           
-          
-                    
- 
-         
-         
-     
-         
-   
-      
+          (display high-card) (display " high" )))))))
 
 
-   
+
+
+
+
+
+
+
+
+
+

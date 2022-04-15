@@ -26,17 +26,17 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ( define ( palindrome? l )
-( cond
-( ( empty? l ) #t )
-( ( empty? ( cdr l ) ) #t )
-( ( equal? ( car l ) ( rac l ) )
-( palindrome? ( cdr ( rdc l ) ) )
-)
-( else
-#f
-)
-)
-)
+   ( cond
+      ( ( empty? l ) #t )
+      ( ( empty? ( cdr l ) ) #t )
+      ( ( equal? ( car l ) ( rac l ) )
+        ( palindrome? ( cdr ( rdc l ) ) )
+        )
+      ( else
+        #f
+        )
+      )
+   )
 
 ( trace palindrome?)
 
@@ -66,10 +66,10 @@
 ( trace sum )
 
 ( define ( iota n )
-     ( cond
-        ( ( = n 1 ) '( 1 ) )
-        ( else
-          ( snog n ( iota ( - n 1 ) )) )))
+   ( cond
+      ( ( = n 1 ) '( 1 ) )
+      ( else
+        ( snog n ( iota ( - n 1 ) )) )))
 
 ;( trace iota )
 
@@ -78,13 +78,13 @@
       ( ( empty? l )
         '()
         )
-        ( ( equal? ( car l ) o )
-          ( take-from o ( cdr l ) )
+      ( ( equal? ( car l ) o )
+        ( take-from o ( cdr l ) )
         )
       ( else
         ( cons ( car l ) ( take-from o ( cdr l ) ) )
         )
       ))
-   
+
 
 ( trace take-from)
