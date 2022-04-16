@@ -68,17 +68,17 @@ purple(Name) :- triangle(Name,_,_,color(purple)).
 %%% Color Searcher
 searcher(Color) :- square(Name,_,color(Color)), 
     write(Name),
-    write(' is '),
+    write(' is a'),
     write(Color),nl,fail.
 
 searcher(Color) :- circle(Name,_,color(Color)), 
     write(Name),
-    write(' is '),
+    write(' is a'),
     write(Color),nl,fail.
 
 searcher(Color) :- triangle(Name,_,_,color(Color)), 
     write(Name),
-    write(' is '),
+    write(' is a'),
     write(Color),nl,fail.
 searcher.
 
