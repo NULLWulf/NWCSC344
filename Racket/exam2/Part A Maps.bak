@@ -1,0 +1,11 @@
+#lang racket
+
+;; Manual map definition 
+
+( define (my-map f xs)
+   ( if (null? xs) null
+        ( cons ( f ( first xs ))
+               (my-map f (rest xs)))))
+
+( my-map (λ (x) ( * 4 x )) '(7 2 4 ))
+( map (λ (x) ( * 4 x )) '(7 2 4 ))
