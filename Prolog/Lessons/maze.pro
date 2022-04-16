@@ -1,6 +1,7 @@
 %% connected
 
 connect(start,2).
+connect(2,8).
 connect(8,9).
 connect(3,9).
 connect(3,4).
@@ -47,22 +48,23 @@ connected_to(A,B) :-
 % the Start=start to finish.
 
 solve :-
-    extend_path([start], Solution),
+extend_path([start],Solution),
     write_solution(Solution).
 
 extend_path(PathSoFar,Solution) :-
     PathSoFar = [finish|_],
-% check(’>>>’,’PathSoFar’,PathSoFar),
+    %check('>>>','PathSoFar',PathSoFar),
     Solution = PathSoFar.
 
 extend_path(PathSoFar,Solution) :-
-% check(’>>>’,’PathSoFar’,PathSoFar),
+    %check('>>>','PathSoFar',PathSoFar),
     PathSoFar = [CurrentSpot|RestOfPath],
     connected_to(CurrentSpot,NewSpot),
     not(member(NewSpot,RestOfPath)),
-    extend_path([NewSpot|RestOfPath],Solution).
+    extend_path([NewSpot|PathSoFar],Solution).
 
 write_solution([]).
+
 write_solution([H|T]) :-
     write_solution(T),
     write(H),nl.
