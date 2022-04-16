@@ -37,3 +37,8 @@ connect(32,31).
 connect(31,25).
 connect(25,19).
 connect(32,finish).
+
+connected_to(A,B) :-
+    connect(A,B).
+connected_to(B,A) :-
+    connect(B,A).
