@@ -61,9 +61,9 @@ green(Name) :- square(Name,_,color(green)).
 green(Name) :- circle(Name,_,color(green)).
 green(Name) :- triangle(Name,_,_,color(green)).
 
-green(Name) :- square(Name,_,color(green)).
-green(Name) :- circle(Name,_,color(green)).
-green(Name) :- triangle(Name,_,_,color(green)).
+purple(Name) :- square(Name,_,color(purple)).
+purple(Name) :- circle(Name,_,color(purple)).
+purple(Name) :- triangle(Name,_,_,color(purple)).
 
 %%% Color Searcher
 searcher(Color) :- square(Name,_,color(Color)), 
