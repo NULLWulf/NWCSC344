@@ -13,6 +13,11 @@
 
 ( define filt-cities ( filter ( λ (cities) (< (string-length (car cities)) 5 )) cities ))
 ( define ny-cities (filter (λ (city) (eq? "ny" (second city))) cities))
+
+( define ( filtCities state )
+   ( define s state)
+   (filter (λ (city st) (eq? st (second city))) (cities s)))
+   
 ;;;  ( map ( λ (n) ( + 1 n )) '(1 2 3 4 5 6 7 8 9 10 )) 
 ;; '(2 3 4 5 6 7 8 9 10 11)
 
