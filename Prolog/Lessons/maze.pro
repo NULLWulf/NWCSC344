@@ -1,7 +1,6 @@
 %% connected
 
 connect(start,2).
-connect(2,8).
 connect(8,9).
 connect(3,9).
 connect(3,4).
@@ -40,5 +39,38 @@ connect(32,finish).
 
 connected_to(A,B) :-
     connect(A,B).
-connected_to(B,A) :-
+connected_to(A,B) :-
     connect(B,A).
+
+% -----------------------------------------------------------------------
+% solve(Start,Solution) :: succeeds if a Solution represents a path from
+% the Start=start to finish.
+
+solve :-
+    extend_path([start], Solution),
+    write_solution(Solution).
+
+extend_path(PathSoFar,Solution) :-
+    PathSoFar = [finish|_],
+% check(’>>>’,’PathSoFar’,PathSoFar),
+    Solution = PathSoFar.
+
+extend_path(PathSoFar,Solution) :-
+% check(’>>>’,’PathSoFar’,PathSoFar),
+    PathSoFar = [CurrentSpot|RestOfPath],
+    connected_to(CurrentSpot,NewSpot),
+    not(member(NewSpot,RestOfPath)),
+    extend_path([NewSpot|RestOfPath],Solution).
+
+write_solution([]).
+write_solution([H|T]) :-
+    write_solution(T),
+    write(H),nl.
+
+check(Label,Name,Value) :-
+    write(Label),write(': '),
+    write(Name),write(' = '),
+    write(Value),nl,
+    read(_).
+
+
