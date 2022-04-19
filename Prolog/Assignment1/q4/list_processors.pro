@@ -6,7 +6,8 @@ rest([_|T], T).
 
 %% Last %%%
 last([H|[]], H).
-last([_|T], Result) :- last(T, Result).
+last([_|T], Result) :- 
+    last(T, Result).
 
 
 %% Nth %%%
@@ -61,7 +62,7 @@ make_set([H|T],[H|TS]) :-
 
 %% Make List %%
 make_list(0,_,_).
-make_list(N,E,L) :- K - 1,
+make_list(N,E,L) :- K is N - 1,
     make_list(K,E,NL),
     add_last(E,NL,L).
 
@@ -77,7 +78,7 @@ but_last([H|T],L) :-
 
 %% Is palindrome %%
 is_palindrome([]).
-is_palindrome([_|[]],[]).
+is_palindrome([_|[]]).
 is_palindrome(L) :- first(L,First), last(L,Last),
     First = Last, but_first(L,NL),
     but_last(NL,NNL), is_palindrome(NNL).
@@ -101,3 +102,12 @@ sentence(S) :-
     add_last(E1,NPV,NPV1),
     add_last(E2,NPV1,NPV2),
     add_last(E3,NPV2,S).
+
+
+show(Name,Value) :-
+write(Name),write(' = '),
+write(Value),nl.
+showr(Name,Value) :-
+write(Name),write(' = '),
+reverse(Value,RValue),
+write(RValue),nl.

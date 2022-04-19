@@ -15,6 +15,7 @@ cen(vulpix).
 cen(poliwag).
 cen(squirtle).
 cen(staryu).
+cen(eevee).
 
 % -----------------------------------------------------------------------
 % --- evolves(P,Q) :: Pokemon P directly evolves to pokemon Q
@@ -32,6 +33,10 @@ evolves(poliwhirl,poliwrath).
 evolves(squirtle,wartortle).
 evolves(wartortle,blastoise).
 evolves(staryu,starmie).
+
+evolves(eevee,flareon).
+evolves(eevee,jolteon).
+evolves(eevee,vaporeon).
 
 % -----------------------------------------------------------------------
 % --- pokemon(name(N),T,hp(H),attach(A,D)) :: There is a pokemon with
@@ -67,6 +72,14 @@ pokemon(name(blastoise), water, hp(140), attack(hydro-pump, 60)).
 pokemon(name(staryu), water, hp(40), attack(slap, 20)).
 pokemon(name(starmie), water, hp(60), attack(star-freeze, 20)).
 
+pokemon(name(plusle), electric, hp(30), attack(spark, 20)).
+pokemon(name(minum), electric, hp(30), attack(shock, 20)).
+
+pokemon(name(eevee), normal, hp(30), attack(growl, 0)).
+pokemon(name(flareon), flareon, hp(65), attack(ember, 40)).
+pokemon(name(jolteon), electric, hp(65), attack(paralayze, 30)).
+pokemon(name(vaporeon), grass, hp(65), attack(constrict, 50)).
+
 display_names :- pokemon(name(Name),_,_,_),write(Name),nl,fail.
 
 disply_attacks :- pokemon(_,_,_,attack(Attack,_)),write(Attack),nl,fail.
@@ -98,3 +111,18 @@ display_info(P) :- pokemon(name(P), T, hp(HP), attack(A, DMG)),
     write('pokemon(name('), write(P), write('), '),
     write(T), write(', hp('), write(HP), write('), attack('), write(A),
     write(', '), write(DMG), write(')), ').
+
+attack(Q,R) :- pokemon(name(Q),_,_,attack(A,DMG)),
+                pokemon(name(R),_,hp(HP),_),
+                write(Q),write(' attacks '),write(R),write(' with '),write(A),nl,
+                REM is HP - DMG,
+                checkHealth(R,REM),
+                write(R),write(' has '),write(REM),write(' health left'),
+                %attack(R,Q),
+                nl,fail.
+
+attack.
+
+checkHealth(P,H) :- H < 0, write(P), write(' is dead.'), nl,fail.
+checkHealth(P,H) :- H > 0, nl.
+checkHealth.
