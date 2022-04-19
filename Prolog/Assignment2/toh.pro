@@ -67,7 +67,15 @@ m32([Tower1,Tower2Before,Tower3Before],[Tower1,Tower2After,Tower3After]) :-
 % -----------------------------------------------------------------------
 % --- valid_state(S) :: S is a valid state
 
-% <<redacted: valid_state>>
+
+valid_state(S) :- 
+    S = [[t,s,m,l,h],[],[]].
+
+valid_state(S) :- 
+    S = [[],[t,s,m,h],[l]].
+
+valid_state(S) :- 
+    S = [[],[h],[t,s,m,l]].
 
 % -----------------------------------------------------------------------
 % --- solve(Start,Solution) :: succeeds if Solution represents a path
@@ -98,11 +106,36 @@ extend_path(PathSoFar,SolutionSoFar,Solution) :-
 % --- write_sequence_reversed(S) :: Write the sequence, given by S,
 % --- expanding the tokens into meaningful strings.
 write_solution(S) :-
-nl, write('Solution ...'), nl, nl,
-reverse(S,R),
-write_sequence(R),nl.
+    nl, write('Solution ...'), nl, nl,
+    reverse(S,R),
+    write_sequence(R),nl.
 
-%% <<redacted: write_sequence>>
+write_sequence([]).
+write_sequence([H|T]) :-
+    elaborate(H,E),
+    write(E),nl,
+    write_sequence(T).
+
+
+elaborate(m12,Output) :-
+    Output = 'Transfer a disk from tower 1 to tower 2.'.
+
+elaborate(m13,Output) :-
+    Output = 'Transfer a disk from tower 1 to tower 3.'.
+
+elaborate(m21,Output) :-
+    Output = 'Transfer a disk from tower 2 to tower 1.'.
+
+elaborate(m23,Output) :-
+    Output = 'Transfer a disk from tower 2 to tower 3.'.
+
+elaborate(m31,Output) :-
+    Output = 'Transfer a disk from tower 3 to tower 1.'.
+
+elaborate(m32,Output) :-
+    Output = 'Transfer a disk from tower 3 to tower 2.'.
+
+    
 
 % -----------------------------------------------------------------------
 % --- Unit test programs
@@ -148,3 +181,25 @@ test__m32 :-
     trace('','TowersBefore',TowersBefore),
     m32(TowersBefore,TowersAfter),
     trace('','TowersAfter',TowersAfter).
+
+test__valid_state :-
+    write('Testing: valid_state\n'),
+    test__vs([[l,t,s,m,h],[],[]]),
+    test__vs([[t,s,m,l,h],[],[]]),
+    test__vs([[],[h,t,s,m],[l]]),
+    test__vs([[],[t,s,m,h],[l]]),
+    test__vs([[],[h],[l,m,s,t]]),
+    test__vs([[],[h],[t,s,m,l]]).
+
+test__vs(S) :-
+    valid_state(S),
+    write(S), write(' is valid.'), nl.
+
+test__vs(S) :-
+    write(S), write(' is invalid.'), nl.
+
+test__write_sequence :-
+    write('First test of write_sequence ...'), nl,
+    write_sequence([m31,m12,m13,m21]),
+    write('Second test of write_sequence ...'), nl,
+    write_sequence([m13,m12,m32,m13,m21,m23,m13]).
