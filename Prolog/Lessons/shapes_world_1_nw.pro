@@ -9,6 +9,12 @@
 % -----------------------------------------------------------------------
 % --- square(N,side(L),color(C)) :: N is the name of a square with side L
 % --- and color C
+
+polygon(sera).
+polygon(sara).
+polygon(sarah).
+polygon(sony).
+
 square(sera,side(7),color(purple)).
 square(sara,side(5),color(blue)).
 square(sarah,side(11),color(red)).
@@ -43,6 +49,7 @@ squares.
 % list all of the names of the triangles
 triangles :- triangle(Name,_,_,_), write(Name),nl,fail.
 triangles.
+
 
 % -----------------------------------------------------------------------
 % --- squares :: list the names of all of the shapes

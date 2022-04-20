@@ -26,8 +26,6 @@ make_move(TowersBeforeMove,TowersAfterMove,m31) :-
 make_move(TowersBeforeMove,TowersAfterMove,m32) :-
     m32(TowersBeforeMove,TowersAfterMove).
 
-
-% <<redacted: the six state space operators>>
 m12([Tower1Before,Tower2Before,Tower3],[Tower1After,Tower2After,Tower3]) :-
     Tower1Before = [H|T],
     Tower1After = T,
@@ -77,15 +75,56 @@ valid_state(S) :-
 valid_state(S) :- 
     S = [[],[h],[t,s,m,l]].
 
+valid_state(S) :- 
+    S = [[m,l,h],[s],[t]].
+
+valid_state(S) :- 
+    S = [[m,l,h],[],[s,t]].
+
+% valid_state(S) :-
+%     write('Checking Valid State'),n,
+%     [[t,s,m,l,h],[],[]] == S,
+%     [[s,m,l,h],[],[t]] == S,
+%     [[m,l,h],[s],[t]] == S,
+%     [[m,l,h],[t,s],[]] == S,
+%     [[l,h],[t,s],[m]] == S,
+%     [[t,l,h],[s],[m]] == S,
+%     [[t,l,h],[],[s,m]] == S,
+%     [[l,h],[],[t,s,m]] == S,
+%     [[h],[l],[t,s,m]] == S,
+%     [[h],[t,l],[s,m]] == S,
+%     [[s,h],[t,l],[m]] == S,
+%     [[t,s,h],[l],[m]] == S,
+%     [[t,s,h],[m,l],[]] == S,
+%     [[s,h],[m,l],[t]] == S,
+%     [[h],[s,m,l],[t]] == S,
+%     [[h],[t,s,m,l],[]] == S,
+%     [[],[t,s,m,l],[h]] == S,
+%     [[t],[s,m,l],[h]] == S,
+%     [[t],[m,l],[s,h]] == S,
+%     [[],[m,l],[t,s,h]] == S,
+%     [[m],[l],[t,s,h]] == S,
+%     [[m],[t,l],[s,h]] == S,
+%     [[s,m],[t,l],[h]] == S,
+%     [[t,s,m],[l],[h]] == S,
+%     [[t,s,m],[],[l,h]] == S,
+%     [[s,m],[],[t,l,h]] == S,
+%     [[m],[s],[t,l,h]] == S,
+%     [[m],[t,s],[l,h]] == S,
+%     [[],[t,s],[m,l,h]] == S,
+%     [[t],[s],[m,l,h]] == S,
+%     [[t],[],[s,m,l,h]] == S,
+%     [[],[],[t,s,m,l,h]] == S.
+
 % -----------------------------------------------------------------------
 % --- solve(Start,Solution) :: succeeds if Solution represents a path
 % --- from the start state to the goal state.
 solve :-
-    extend_path([[[s,m,l],[],[]]],[],Solution),
+    extend_path([[[t,s,m,l,h],[],[]]],[],Solution),
     write_solution(Solution).
 
 extend_path(PathSoFar,SolutionSoFar,Solution) :-
-    PathSoFar = [[[],[],[s,m,l]]|_],
+    PathSoFar = [[[],[],[t,s,m,l,h]]|_],
     showr('PathSoFar',PathSoFar),
     showr('SolutionSoFar',SolutionSoFar),
     Solution = SolutionSoFar.
@@ -116,7 +155,6 @@ write_sequence([H|T]) :-
     write(E),nl,
     write_sequence(T).
 
-
 elaborate(m12,Output) :-
     Output = 'Transfer a disk from tower 1 to tower 2.'.
 
@@ -136,7 +174,6 @@ elaborate(m32,Output) :-
     Output = 'Transfer a disk from tower 3 to tower 2.'.
 
     
-
 % -----------------------------------------------------------------------
 % --- Unit test programs
 
@@ -147,12 +184,28 @@ test__m12 :-
     m12(TowersBefore,TowersAfter),
     trace('','TowersAfter',TowersAfter).
 
+test__m12x :-
+    write('Testing: move_m12\n'),
+    TowersBefore = [[s,m,l,h],[],[t]],
+    trace('','TowersBefore',TowersBefore),
+    m12(TowersBefore,TowersAfter),
+    trace('','TowersAfter',TowersAfter).
+
+
 test__m13 :-
     write('Testing: move_m13\n'),
     TowersBefore = [[t,s,m,l,h],[],[]],
     trace('','TowersBefore',TowersBefore),
     m13(TowersBefore,TowersAfter),
     trace('','TowersAfter',TowersAfter).
+
+test__m13x :-
+    write('Testing: move_m13\n'),
+    TowersBefore = [[s,m,l,h],[],[t]],
+    trace('','TowersBefore',TowersBefore),
+    m13(TowersBefore,TowersAfter),
+    trace('','TowersAfter',TowersAfter).
+
 
 test__m21 :-
     write('Testing: move_m21\n'),
