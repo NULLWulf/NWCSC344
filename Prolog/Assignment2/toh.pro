@@ -79,7 +79,7 @@ valid_state(S) :-
     S = [[m,l,h],[s],[t]].
 
 valid_state(S) :- 
-    S = [[m,l,h],[],[s,t]].
+    S = [[m,l,h],[t,s],[]].
 
 % valid_state(S) :-
 %     write('Checking Valid State'),n,
@@ -121,9 +121,15 @@ valid_state(S) :-
 % --- from the start state to the goal state.
 solve :-
     extend_path([[[t,s,m,l,h],[],[]]],[],Solution),
+
+    write('Program Start'),nl,
+
     write_solution(Solution).
 
 extend_path(PathSoFar,SolutionSoFar,Solution) :-
+
+    write('Checking Solution Path'),nl,
+
     PathSoFar = [[[],[],[t,s,m,l,h]]|_],
     showr('PathSoFar',PathSoFar),
     showr('SolutionSoFar',SolutionSoFar),
@@ -136,6 +142,9 @@ extend_path(PathSoFar,SolutionSoFar,Solution) :-
     show('Move',Move),
     show('NextState',NextState),
     not(member(NextState,PathSoFar)),
+
+    write('Checking Valid State'),nl,
+
     valid_state(NextState),
     Path = [NextState|PathSoFar],
     Soln = [Move|SolutionSoFar],
