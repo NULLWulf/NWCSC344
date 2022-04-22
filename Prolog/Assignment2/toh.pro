@@ -65,56 +65,28 @@ m32([Tower1,Tower2Before,Tower3Before],[Tower1,Tower2After,Tower3After]) :-
 % -----------------------------------------------------------------------
 % --- valid_state(S) :: S is a valid state
 
+valid_state([A|[B|[C]]]) :- state(A), state(B), state(C).
 
-valid_state(S) :- 
-    S = [[t,s,m,l,h],[],[]].
+state([t]).
+state([t,s]).
+state([t,s,m]).
+state([t,s,m]).
+state([t,s,m,l]).
+state([t,s,m,l,h]).
 
-valid_state(S) :- 
-    S = [[],[t,s,m,h],[l]].
+state([t,s]).
 
-valid_state(S) :- 
-    S = [[],[h],[t,s,m,l]].
+state([m,l,h]).
 
-valid_state(S) :- 
-    S = [[m,l,h],[s],[t]].
+state([t,s,m,h]).
 
-valid_state(S) :- 
-    S = [[m,l,h],[t,s],[]].
+state([]).
+state([t]).
+state([s]).
+state([m]).
+state([l]).
+state([h]).
 
-% valid_state(S) :-
-%     write('Checking Valid State'),n,
-%     [[t,s,m,l,h],[],[]] == S,
-%     [[s,m,l,h],[],[t]] == S,
-%     [[m,l,h],[s],[t]] == S,
-%     [[m,l,h],[t,s],[]] == S,
-%     [[l,h],[t,s],[m]] == S,
-%     [[t,l,h],[s],[m]] == S,
-%     [[t,l,h],[],[s,m]] == S,
-%     [[l,h],[],[t,s,m]] == S,
-%     [[h],[l],[t,s,m]] == S,
-%     [[h],[t,l],[s,m]] == S,
-%     [[s,h],[t,l],[m]] == S,
-%     [[t,s,h],[l],[m]] == S,
-%     [[t,s,h],[m,l],[]] == S,
-%     [[s,h],[m,l],[t]] == S,
-%     [[h],[s,m,l],[t]] == S,
-%     [[h],[t,s,m,l],[]] == S,
-%     [[],[t,s,m,l],[h]] == S,
-%     [[t],[s,m,l],[h]] == S,
-%     [[t],[m,l],[s,h]] == S,
-%     [[],[m,l],[t,s,h]] == S,
-%     [[m],[l],[t,s,h]] == S,
-%     [[m],[t,l],[s,h]] == S,
-%     [[s,m],[t,l],[h]] == S,
-%     [[t,s,m],[l],[h]] == S,
-%     [[t,s,m],[],[l,h]] == S,
-%     [[s,m],[],[t,l,h]] == S,
-%     [[m],[s],[t,l,h]] == S,
-%     [[m],[t,s],[l,h]] == S,
-%     [[],[t,s],[m,l,h]] == S,
-%     [[t],[s],[m,l,h]] == S,
-%     [[t],[],[s,m,l,h]] == S,
-%     [[],[],[t,s,m,l,h]] == S.
 
 % -----------------------------------------------------------------------
 % --- solve(Start,Solution) :: succeeds if Solution represents a path
@@ -142,9 +114,7 @@ extend_path(PathSoFar,SolutionSoFar,Solution) :-
     show('Move',Move),
     show('NextState',NextState),
     not(member(NextState,PathSoFar)),
-
     write('Checking Valid State'),nl,
-
     valid_state(NextState),
     Path = [NextState|PathSoFar],
     Soln = [Move|SolutionSoFar],

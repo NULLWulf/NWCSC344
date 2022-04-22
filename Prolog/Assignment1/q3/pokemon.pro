@@ -82,7 +82,8 @@ pokemon(name(vaporeon), grass, hp(65), attack(constrict, 50)).
 
 display_names :- pokemon(name(Name),_,_,_),write(Name),nl,fail.
 
-disply_attacks :- pokemon(_,_,_,attack(Attack,_)),write(Attack),nl,fail.
+disply_attacks :- pokemon(_,_,_,attack(Attack,DMG)),write(Attack)
+                ,write(' is '),write(DMG),write(' damage.'),nl,fail.
 
 powerful(Name) :- pokemon(name(Name),_,_,attack(_,DMG)), DMG > 55.
 

@@ -75,26 +75,26 @@ purple(Name) :- triangle(Name,_,_,color(purple)).
 %%% Color Searcher
 searcher(Color) :- square(Name,_,color(Color)), 
     write(Name),
-    write(' is a'),
+    write(' is '),
     write(Color),nl,fail.
 
 searcher(Color) :- circle(Name,_,color(Color)), 
     write(Name),
-    write(' is a'),
+    write(' is '),
     write(Color),nl,fail.
 
 searcher(Color) :- triangle(Name,_,_,color(Color)), 
     write(Name),
-    write(' is a'),
+    write(' is '),
     write(Color),nl,fail.
 searcher.
 
 % -----------------------------------------------------------------------
 % --- large(Name) :: Name is a large shape
-large(Name) :- area(Name,A), A >= 100.
+large(Name) :- area(Name,A), A >= 100,write(Name),nl,fail.
 % -----------------------------------------------------------------------
 % --- small(Name) :: Name is a small shape
-small(Name) :- area(Name,A), A < 100.
+small(Name) :- area(Name,A), A < 100,write(Name),nl,fail.
 % -----------------------------------------------------------------------
 % --- area(Name,A) :: A is the area of the shape with name Name
 area(Name,A) :- circle(Name,radius(R),_), A is 3.14 * R * R.

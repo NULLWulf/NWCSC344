@@ -9,7 +9,6 @@ last([H|[]], H).
 last([_|T], Result) :- 
     last(T, Result).
 
-
 %% Nth %%%
 nth(0,[H|_],H).
 nth(N,[_|T],E) :- K is N - 1, nth(K,T,E).
@@ -102,12 +101,3 @@ sentence(S) :-
     add_last(E1,NPV,NPV1),
     add_last(E2,NPV1,NPV2),
     add_last(E3,NPV2,S).
-
-
-show(Name,Value) :-
-write(Name),write(' = '),
-write(Value),nl.
-showr(Name,Value) :-
-write(Name),write(' = '),
-reverse(Value,RValue),
-write(RValue),nl.
