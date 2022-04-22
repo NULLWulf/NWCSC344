@@ -65,27 +65,49 @@ m32([Tower1,Tower2Before,Tower3Before],[Tower1,Tower2After,Tower3After]) :-
 % -----------------------------------------------------------------------
 % --- valid_state(S) :: S is a valid state
 
-valid_state([A|[B|[C]]]) :- state(A), state(B), state(C).
+valid_state([A|[B|[C]]]) :- towerState(A), towerState(B), towerState(C). 
 
-state([t]).
-state([t,s]).
-state([t,s,m]).
-state([t,s,m]).
-state([t,s,m,l]).
-state([t,s,m,l,h]).
+towerState([]).
+towerState([s]).
+towerState([s,m]).
+towerState([s,m,l]).
+towerState([s,l]).
+towerState([s,l,h]).
+towerState([s,h]).
+towerState([s,m,h]).
+towerState([m]).
+towerState([m,l]).
+towerState([m,l,h]).
+towerState([m,h]).
+towerState([m]).
+towerState([m,l]).
+towerState([m,l,h]).
+towerState([m,h]).
+towerState([l]).
+towerState([l,h]).
+towerState([h]).
+towerState([s,m,l,h]).
+towerState([t]).
+towerState([t,s]).
+towerState([t,s,m]).
+towerState([t,s,m,l]).
+towerState([t,s,l]).
+towerState([t,s,l,h]).
+towerState([t,s,h]).
+towerState([t,s,m,h]).
+towerState([t,m]).
+towerState([t,m,l]).
+towerState([t,m,l,h]).
+towerState([t,m,h]).
+towerState([t,m]).
+towerState([t,m,l]).
+towerState([t,m,l,h]).
+towerState([t,m,h]).
+towerState([t,l]).
+towerState([t,l,h]).
+towerState([t,h]).
+towerState([t,s,m,l,h]).
 
-state([t,s]).
-
-state([m,l,h]).
-
-state([t,s,m,h]).
-
-state([]).
-state([t]).
-state([s]).
-state([m]).
-state([l]).
-state([h]).
 
 
 % -----------------------------------------------------------------------
@@ -93,28 +115,21 @@ state([h]).
 % --- from the start state to the goal state.
 solve :-
     extend_path([[[t,s,m,l,h],[],[]]],[],Solution),
-
-    write('Program Start'),nl,
-
     write_solution(Solution).
 
 extend_path(PathSoFar,SolutionSoFar,Solution) :-
-
-    write('Checking Solution Path'),nl,
-
     PathSoFar = [[[],[],[t,s,m,l,h]]|_],
-    showr('PathSoFar',PathSoFar),
-    showr('SolutionSoFar',SolutionSoFar),
+    % showr('PathSoFar',PathSoFar),
+    % showr('SolutionSoFar',SolutionSoFar),
     Solution = SolutionSoFar.
 
 extend_path(PathSoFar,SolutionSoFar,Solution) :-
     PathSoFar = [CurrentState|_],
-    showr('PathSoFar',PathSoFar),
+    % showr('PathSoFar',PathSoFar),
     make_move(CurrentState,NextState,Move),
-    show('Move',Move),
-    show('NextState',NextState),
+    % show('Move',Move),
+    % show('NextState',NextState),
     not(member(NextState,PathSoFar)),
-    write('Checking Valid State'),nl,
     valid_state(NextState),
     Path = [NextState|PathSoFar],
     Soln = [Move|SolutionSoFar],
