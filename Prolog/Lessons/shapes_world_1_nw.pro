@@ -32,7 +32,7 @@ circle(claire,radius(5),color(green)).
 triangle(terry,base(2),height(2),color(green)).
 triangle(tony,base(4),height(8),color(red)).
 triangle(tara,base(3),height(2),color(purple)).
-triangle(tamara,base(100),height(100),color(blue)).
+% triangle(tamara,base(100),height(100),color(blue)).
 % -----------------------------------------------------------------------
 % Rules ... 9 with original deo
 % -----------------------------------------------------------------------
