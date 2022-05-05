@@ -3,51 +3,53 @@
   padding-left: 5px;
 }
 
-.header{
-  background: linear-gradient(#235937,#FFCC33);
+.header {
+  background: linear-gradient(#235937, #ffcc33);
   padding: 20px;
 }
 
-.identedLink{
+.identedLink {
   padding-left: 25px;
 }
 
 .container {
-  align-content: left;
-	width: auto;
-	
-	display: grid;
-	grid-template-rows: 125px 125px;
-	grid-template-columns: 300px 300px 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 250px); /* 3 columns */
+  grid-template-rows: repeat(2, 160px); /* 3 rows  */
+  grid-gap: 50px 30px; /* 50 pixels of space added between rows and 30 pixels added between columns  */
 }
 
 .item {
-	padding: 20px;
-	font-size: 15px;
-	font-family: sans-serif;
+  padding: 20px;
+  font-size: 15px;
+  font-family: sans-serif;
   border-left: 10px solid #235937;
   padding-left: 5px;
 }
 
-h1 { 
+h1 {
   font-size: 45px;
-  padding-left: 10px;}
+  padding-left: 10px;
+}
 
-h2 { 
-  font-size: 30px;}
+h2 {
+  font-size: 30px;
+}
 
-h3 { 
+h3 {
   font-size: 15px;
-  padding-left: 15px;}
+  padding-left: 15px;
+}
 
 li {
-  color:#235937;
+  color: #235937;
 }
 
 b {
   padding: 5px;
 }
 
-html, body {
+html,
+body {
   font-family: "Saturday Sans Bold", sans-serif;
 }
