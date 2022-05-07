@@ -1,0 +1,23 @@
+#lang racket
+
+(require 2htdp/image)
+
+( define ( tower color width )
+   ( rectangle width 25 "solid" color ) )
+
+( define ( symbol->disk size )
+   ( cond
+      ((eq? size 'T ) ( tower "purple" 50 ) )
+      ((eq? size 'S ) ( tower "red" 100 ) )
+      ((eq? size 'M ) ( tower "orange" 150 ) )
+      ((eq? size 'L ) ( tower "blue" 200 ) )
+      ((eq? size 'H ) ( tower "green" 250 ) )
+      )
+   )
+
+( define ( internal->intermediate peg )
+   ( map symbol->disk peg )
+   )
+
+( define ( internal->external peg )
+   ( foldr above empty-image ( internal->intermediate peg ) ) )
