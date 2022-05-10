@@ -14,6 +14,6 @@ freqTable l = [ (x, count x l) | x <- list2set l]
 
 list2set :: Eq a => [a] -> [a]
 list2set [] = []
-list2set (x:xs) = if (elem x xs ) 
-    then list2set(xs)
-    else x:(list2set(xs))
+list2set (x:xs)
+    | elem x xs = list2set(xs)
+    | otherwise = x:(list2set(xs))

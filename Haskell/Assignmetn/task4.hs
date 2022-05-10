@@ -3,9 +3,9 @@
 
 list2set :: Eq a => [a] -> [a]
 list2set [] = []
-list2set (x:xs) = if (elem x xs ) 
-    then list2set(xs)
-    else x:(list2set(xs))
+list2set (x:xs)
+    | elem x xs = list2set(xs)
+    | otherwise = x:(list2set(xs))
 
 ----------------------------------
 -- Part 2 - averageWordLength ----
@@ -13,15 +13,15 @@ list2set (x:xs) = if (elem x xs )
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome [] = True
 isPalindrome (x:[]) = True
-isPalindrome l = if ( head l == last l ) 
-    then isPalindrome (tail(init l))
-    else False
+isPalindrome l
+   | head l == last l = isPalindrome (tail(init l))
+   | otherwise = False
 
 ----------------------------------
 -- Part 3 - collatz --------------
 
 collatz :: Integral a => a -> [a]
-collatz n = 
-    if ((n `mod` 2 ) == 0) then n:(collatz ( n `div` 2)) else
-    if n == 1 then [1] else
-    n:(collatz ( 3 * n + 1))
+collatz n
+   | n `mod` 2 == 0 = n:(collatz ( n `div` 2))
+   | n == 1 = [1]
+   | otherwise = n:(collatz ( 3 * n + 1)) 

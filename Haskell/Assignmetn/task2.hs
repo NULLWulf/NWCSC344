@@ -22,14 +22,16 @@ blueAreaOfCube x = (6 * s) - (6 * c)
 -- Part 4 - paintedCube1 ---------
 
 paintedCube1 :: (Num p, Eq p) => p -> p
-paintedCube1 n = 
-    if (n == 1) then 0
-    else ( 6 * ( n - 2 ) ^ 2)
+
+
+paintedCube1 n
+   | n == 1 = 0
+   | otherwise = ( 6 * ( n - 2 ) ^ 2)
 
 ----------------------------------
 -- Part 5 - paintedCube2 ---------
 
 paintedCube2 :: (Eq p, Num p) => p -> p
-paintedCube2 n = 
-    if (n == 1) then 0
-    else ( 12 * ( n - 2 ) )
+paintedCube2 n
+   | n == 1 = 0
+   | otherwise = ( 12 * ( n - 2 ) )
