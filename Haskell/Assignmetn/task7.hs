@@ -22,10 +22,10 @@ pairwiseValues :: [Int] -> [(Int,Int)]
 pairwiseValues l = zip (init l) (tail l)
 
 pairwiseDifferences :: [Int] -> [Int]
-pairwiseDifferences l = map (\(x, y) -> x - y) $ pairwiseValues l
+pairwiseDifferences l = map (\(x, y) -> x - y) ( pairwiseValues l )
 
 pairwiseSums :: [Int] -> [Int]
-pairwiseSums l = map (\(x, y) -> x + y) $ pairwiseValues l
+pairwiseSums l = map (\(x, y) -> x + y) ( pairwiseValues l )
 
 half :: Int -> Double
 half number = ( fromIntegral number ) / 2

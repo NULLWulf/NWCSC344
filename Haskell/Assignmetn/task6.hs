@@ -16,9 +16,8 @@ triangleSequence i = map tgl [1..i]
 
 vowels = "aeiou"
 vowelCount :: [Char] -> Int
-vowelCount l = vListLength where
+vowelCount l = length vList where
     vList = filter (\x -> elem x vowels) l
-    vListLength = length vList
 
 --------------------------------
 -- Part 4 lcsim ----------------

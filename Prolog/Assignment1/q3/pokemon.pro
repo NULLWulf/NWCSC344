@@ -127,3 +127,11 @@ attack.
 checkHealth(P,H) :- H < 0, write(P), write(' is dead.'), nl,fail.
 checkHealth(P,H) :- H > 0, nl.
 checkHealth.
+
+
+color(P,Color) :- pokemon(name(P),fire,_,_), Color = red.
+color(P,Color) :- pokemon(name(P),water,_,_), Color = blue.
+color(P,Color) :- pokemon(name(P),grass,_,_), Color = green.
+color(P,Color) :- pokemon(name(P),electric,_,_), Color = yellow.
+
+ef :- cen(P),evolves(P,Q),write(P),write(' evolves to '),write(Q),nl,fail.
